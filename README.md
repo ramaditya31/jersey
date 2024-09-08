@@ -7,4 +7,4 @@ urls.py, views.py, models.py, dan berkas html.
 
 4. Menurut Anda, dari semua framework yang ada, mengapa framework Django dijadikan permulaan pembelajaran pengembangan perangkat lunak?
 
-5. Mengapa model pada Django disebut sebagai ORM?
+5. Mengapa model pada Django disebut sebagai ORM??
