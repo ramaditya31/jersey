@@ -1,3 +1,7 @@
 from django.contrib import admin
+from .models import Jersey
 
-# Register your models here.
+class JerseyAdmin(admin.ModelAdmin):
+    list_display = ('name', 'price', 'description', 'quantity')
+
+admin.site.register(Jersey, JerseyAdmin)

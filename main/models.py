@@ -5,6 +5,7 @@ class Jersey(models.Model):
     price = models.IntegerField()
     description = models.TextField()
     image = models.CharField(max_length=2083)
+    quantity = models.IntegerField()
     # models.ImageField(upload_to='jersey_images/')
 
     # @property
