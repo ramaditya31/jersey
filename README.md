@@ -21,3 +21,4 @@ Karena model Django menghubungkan objek Python ke tabel dalam database relasiona
 
 
 Tautan PWS: http://rama-aditya31-jerseykuofficial.pbp.cs.ui.ac.id
+Tautan Vercel: https://jersey-lxa7.vercel.app
