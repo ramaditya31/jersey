@@ -26,7 +26,7 @@ SECRET_KEY = 'django-insecure-^psk3!b^icr&!7q%)@0-zye^86inx4#z)y$9ei)_i(#s0xo%-g
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ["localhost", "127.0.0.1", "rama-aditya31-jerseykuofficial.pbp.cs.ui.ac.id", "jersey-lxa7-at4s4rhlv-ramas-projects-0a3a058c.vercel.app", "jersey-lxa7.vercel.app"]
+ALLOWED_HOSTS = ["localhost", "127.0.0.1", "rama-aditya31-jerseyku.pbp.cs.ui.ac.id", "jersey-lxa7-at4s4rhlv-ramas-projects-0a3a058c.vercel.app", "jersey-lxa7.vercel.app"]
 
 
 # Application definition
@@ -56,7 +56,7 @@ ROOT_URLCONF = 'jersey.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': [BASE_DIR / 'templates'],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -123,3 +123,5 @@ STATIC_URL = 'static/'
 # https://docs.djangoproject.com/en/5.1/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+CSRF_TRUSTED_ORIGINS = ["http://localhost","http://127.0.0.1","http://rama-aditya31-jerseyku.pbp.cs.ui.ac.id", "https://rama-aditya31-jerseyku.pbp.cs.ui.ac.id"]

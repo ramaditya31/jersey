@@ -24,4 +24,36 @@
         </div>
     </div>
     {% endfor %}
-{% endblock %}
+
+{% if not jersey %}
+<p>Gagal menambahkan jersey.</p>
+{% else %}
+<table>
+  <tr>
+    <!-- <th>Add Items</th> -->
+    <!-- <th>Price</th>
+    <th>Description</th>
+    <th>Image</th>
+    <th>Quantity</th> -->
+  </tr>
+
+  <!-- {% comment %} Berikut cara memperlihatkan data jersey di bawah baris ini 
+  {% endcomment %} 
+  {% for baju in jersey %}
+  <tr>
+    <td>{{baju.name}}</td>
+    <td>{{baju.price}}</td>
+    <td>{{baju.description}}</td>
+    <td>{{baju.image}}</td>
+    <td>{{baju.quantity}}</td>
+  </tr>
+  {% endfor %} -->
+</table>
+{% endif %}
+
+<br />
+
+<a href="{% url 'main:add_jersey' %}">
+  <button>Add Jersey</button>
+</a>
+{% endblock content %}
