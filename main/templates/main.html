@@ -28,32 +28,55 @@
 {% if not jersey %}
 <p>Gagal menambahkan jersey.</p>
 {% else %}
-<table>
+<table class = "item_table">
   <tr>
-    <!-- <th>Add Items</th> -->
-    <!-- <th>Price</th>
+    <th>Jersey Name</th>
+    <th>Price</th>
     <th>Description</th>
-    <th>Image</th>
-    <th>Quantity</th> -->
+    <th>Quantity</th>
+    <th>Time</th>
   </tr>
 
-  <!-- {% comment %} Berikut cara memperlihatkan data jersey di bawah baris ini 
+  {% comment %} Berikut cara memperlihatkan data jersey di bawah baris ini 
   {% endcomment %} 
   {% for baju in jersey %}
   <tr>
     <td>{{baju.name}}</td>
     <td>{{baju.price}}</td>
     <td>{{baju.description}}</td>
-    <td>{{baju.image}}</td>
     <td>{{baju.quantity}}</td>
+    <td>{{baju.time}}</td>
   </tr>
-  {% endfor %} -->
+  {% endfor %}
 </table>
 {% endif %}
 
 <br />
-
-<a href="{% url 'main:add_jersey' %}">
-  <button>Add Jersey</button>
-</a>
+<div class="btn-container">
+  <a href="{% url 'main:add_jersey' %}">
+    <button class = "btn">Add Jersey</button>
+  </a>
+</div>
+<style> 
+  .item_table{
+    margin-top: 40px;
+  }
+  .btn-container{
+    margin-top: 25px;
+    display: flex;
+    justify-content: center;
+  }
+  .btn{
+    border: 1px solid black;
+    padding: 5px 10px 5px 10px;
+    border-radius: 15px;
+    color: white;
+    background-color: black;
+  }
+  .btn:hover{
+    background-color: white;
+    color: black;
+    transform: scale(1.2);
+  }
+</style>
 {% endblock content %}
