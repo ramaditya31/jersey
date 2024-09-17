@@ -80,9 +80,9 @@ d. Mengakses keempat URL di poin 2 menggunakan Postman, membuat screenshot dari 
 - Mengakses JSON
 ![Alt text](<Screenshot 2024-09-17 at 00.59.18.png>)
 - Mengakses XML by ID
-![Alt text](<Screenshot 2024-09-17 at 01.00.56.png>)
-- Mengakses JSON by ID
 ![Alt text](<Screenshot 2024-09-17 at 01.01.07.png>)
+- Mengakses JSON by ID
+![Alt text](<Screenshot 2024-09-17 at 01.00.56.png>)
 
 e. Melakukan add-commit-push ke GitHub.
 ![Alt text](<Screenshot 2024-09-18 at 02.14.08.png>)
