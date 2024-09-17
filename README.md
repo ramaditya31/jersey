@@ -1,7 +1,8 @@
 __Rama__ __Aditya__ __Rifki__ __Harmono__ __(2306165502)__
 # TUGAS 2
 
-1. Jelaskan bagaimana cara kamu mengimplementasikan checklist di atas secara step-by-step (bukan hanya sekadar mengikuti tutorial).
+1. Jelaskan bagaimana cara kamu mengimplementasikan checklist di atas secara step-by-step (bukan hanya sekadar mengikuti tutorial)
+
 - Untuk membuat proyek Django baru, saya membuat sebuah directory baru bernama jersey di local. Setelah itu, saya membuka terminal pada directory tersebut dan membuat virtual environment baru serta mengaktifkannya. Sebelum membuat Django, saya membuat dependencies melalui sebuah file bernama requirements.txt (berbeda dengan tutorial, saya menambahkan package Pillow) lalu baru di instalasi. Setelah selesai instalasi, saya baru membuat proyek Django yang saya namakan jersey. Setelah terbentuk proyek baru saya merubah pengaturan Allowed Host untuk keperluan deployment baru setelahnya saya test run. 
 - Kemudian saya upload semua progress perubahan melalui platform GitHub. Saya membuat repository kemudian menginisiasi git init di directory jersey. Setelah itu, sebelum melakukan command berikutnya, perlu membuat berkas .gitignore untuk tidak membaca beberapa file yang akan diunggah ke GitHub. Kemudian, saya membuat sebuah berkas README.md yang berisi tulisan yang akan diupload. Setelahnya, saya melakukan command git add, commit, dan push untuk mengunggahnya ke GitHub. 
 - Untuk tahap selanjutnya, yaitu membuat aplikasi baru bernama main, saya melakukan command startapp dan menambahkan aplikasi ke dalam pengaturan proyek jersey, tepatnya di bagian installed apps. Kemudian akan terbentuk sebuah subdirektori yang di dalamnya terdapat berkas-berkas seperti admin.py, apps.py, models.py, test.py, urls.py, views.py, __pycache__, dan subdirektori migrations. Kemudian saya juga menambahkan subdirektori templates untuk menerapkan MVT isinya berupa berkas html (saya membuat dua yaitu base.html dan main.html).
@@ -16,15 +17,20 @@ urls.py, views.py, models.py, dan berkas html.
 ![Alt text](<Screenshot 2024-09-11 at 03.48.28.png>)
 
 3. Jelaskan fungsi git dalam pengembangan perangkat lunak!
+
 Git merupakan tools yang sangat bermanfaat bagi programmer dalam melakukan pelacakan perubahan kode. Dengan adanya git, programmer dapat mengembangkan software secara kolaboratif atau bersamaan. Selain itu, git juga berguna untuk melihat progress yang telah dilakukan selama pengerjaan pemrograman. Git juga menyediakan riwayat perubahan, ini berarti programmer dapat melakukan recovery proyek ke versi sebelumnya.
 
 4. Menurut Anda, dari semua framework yang ada, mengapa framework Django dijadikan permulaan pembelajaran pengembangan perangkat lunak?
+
 Django dijadikan permulaan pembelajaran software development karena framework ini mudah untuk digunakan bagi pemula. Selain itu, Django juga menyediakan banyak fitur bawaan sehingga mempermudah bagi pengembangan dan memfasiltasi proses update data secara berkala bagi user. Terakhir, Django memiliki dokumentasi yang lengkap yang berarti mempermudah para programmer pemula untuk memahami lebih cepat.
 
 5. Mengapa model pada Django disebut sebagai ORM?
+
 Karena model Django menghubungkan objek Python ke tabel dalam database relasional. Pengembang dapat berinteraksi dengan database menggunakan kode Python. Ini menghindari penulisan SQL dan memungkinkan pengelolaan data yang efektif melalui pemetaan objek ke format tabel.
 
 __Link__ __Deployment:__
 Tautan PWS: http://rama-aditya31-jerseykuofficial.pbp.cs.ui.ac.id // Tautan Vercel: https://jersey-lxa7.vercel.app
 
-# Tugas 3
+# TUGAS 3
+
+1. 
