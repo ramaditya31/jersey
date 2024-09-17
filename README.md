@@ -33,4 +33,56 @@ Tautan PWS: http://rama-aditya31-jerseykuofficial.pbp.cs.ui.ac.id // Tautan Verc
 
 # TUGAS 3
 
-1. 
+1. Jelaskan mengapa kita memerlukan data delivery dalam pengimplementasian sebuah platform?
+
+Data delivery sangat penting dalam pengimplementasian sebuah platform, hal ini dikarenakan data delivery berguna untuk meningkatkan efisiensi dengan memastikan bahwa data yang diperlukan oleh user atau aplikasi tersedia secara tepat waktu dan dalam format yang sesuai. Data delivery memungkinkan sinkronisasi data secara real-time, pemrosesan data, dan komunikasi yang efisien antara sistem yang berbeda, mendukung fungsionalitas aplikasi.
+
+2. Menurutmu, mana yang lebih baik antara XML dan JSON? Mengapa JSON lebih populer dibandingkan XML?
+
+Menurut pendapat saya, keduanya memiliki kegunaan yang sama-sama bermanfaat, namun jika dilihat dari kacamata pribadi, JSON lebih baik. Hal ini karena syntax atau format yang dimiliki oleh JSON dapat lebih mudah untuk dibaca. JSON lebih populer karena strukturnya yang lebih sederhana dan efisien dalam hal penggunaan bandwidth dan kecepatan parsing dibanding XML yang lebih kompleks.
+
+3. Jelaskan fungsi dari method is_valid() pada form Django dan mengapa kita membutuhkan method tersebut?
+
+Method is_valid() pada platform Django digunakan untuk memvalidasi data yang diberikan pada form valid atau tidak. Apabila data valid, method is_valid() akan mengembalikan nilai `True` sehingga bisa mengakses data yang sudah bersih. Sebaliknya, apabila data tidak valid, method is_valid() akan mengembalikan nilai `False` dan bisa mendapatkan pesan kesalahan yang spesifik. Method ini diperlukan untuk memastikan data yang masuk sesuai dengan ketentuan yang diterapkan dan menjaga keamanan serta mencegah kesalahan yang lebih banyak.
+
+4. Mengapa kita membutuhkan csrf_token saat membuat form di Django? Apa yang dapat terjadi jika kita tidak menambahkan csrf_token pada form Django? Bagaimana hal tersebut dapat dimanfaatkan oleh penyerang?
+
+`csrf_token` digunakan untuk kegunaan sekuritas dari segala bentuk serangan yang dapat terjadi seperti serangan CSRF (Cross-Site Request Forgery). Ini dapat dieksploitasi oleh penyerang untuk melakukan aksi tanpa sepengetahuan pengguna. Tanpa adanya `csrf_token`, penyerang bisa memalsukan permintaan ke server dan mengambil alih sesi pengguna.
+
+5. Jelaskan bagaimana cara kamu mengimplementasikan checklist di atas secara step-by-step (bukan hanya sekadar mengikuti tutorial)
+
+a. Membuat input form untuk menambahkan objek model pada app sebelumnya.
+- Pertama, saya membuat sebuah berkas baru bernama forms.py di direktori aplikasi (main), kemudian membuat fungsi bernama JerseyForm. Di dalam fungsi tersebut, terdapat dua variabel, yaitu model dan fields. Model akan digunakan untuk menunjukkan model yang akan digunakan untuk form. Fields akan menunjukkan field dari model items yang dimiliki.
+- Mengimport yang akan digunakan pada views.py yang berada pada direktori main. 
+![Alt text](<Screenshot 2024-09-18 at 02.15.42.png>)
+- Membuat fungsi baru yang bernama add_jersey pada views.py yang akan digunakan untuk mengelola input form. Dalam function ini, form JerseyForm diisi dengan data dari request.POST dan akan dilakukan pengecekan. Jika valid, data akan disimpan dan pengguna akan diarahkan kembali ke halaman utama.
+- Import NewJersey dari models.py ke berkas views.py dan tambahkan NewJersey pada fungsi show_main di berkas views.py.
+- Dalam berkas views.py saya menambahkan variabel items yang akan digunakan untuk mengambil semua item yang ada pada database.
+- Buka urls.py dan import fungsi add_jersey yang berasal dari views.py
+- Kemudian, saya menambahkan path('add-jersey', add_jersey, name='add_jersey'), pada urlpatterns yang ada di urls.py untuk mengakses fungsi yang sudah diimport sebelumnya.
+- Selanjutnya saya membuat file html add_jersey.html pada subdirektori templates yang ada pada direktori main dengan isi:
+![Alt text](<Screenshot 2024-09-18 at 02.10.16.png>)
+
+b. Tambahkan 4 fungsi views baru untuk melihat objek yang sudah ditambahkan dalam format XML, JSON, XML by ID, dan JSON by ID.
+- Pertama, buat fungsi show_xml dalam views.py dan menambahkan path URL. Fungsi ini akan mengambil data Item dan mengembalikannya dalam format XML.
+- Kemudian, buat fungsi show_json dalam views.py dan menambahkan path URL. Fungsi ini mengambil data Item dan mengembalikannya dalam format JSON.
+- Lalu, buat fungsi show_xml_by_id dalam views.py dan menambahkan path URL. Fungsi ini mengambil data Item berdasarkan ID yang disediakan dan mengembalikannya dalam format XML.
+- Terakhir, buat fungsi show_json_by_id dalam views.py dan menambahkan path URL. Fungsi ini mengambil data Item berdasarkan ID yang disediakan dan mengembalikannya dalam format JSON
+
+c. Membuat routing URL untuk masing-masing views yang telah ditambahkan pada poin 2.
+- Import beberapa function ke urls.py yang ada di folder main yaitu show_xml, show_json, show_xml_by_id, show_json_by_id.
+- Saya menambahkan path url ke dalam urlpatterns
+![Alt text](<Screenshot 2024-09-18 at 01.55.14-1.png>)
+
+d. Mengakses keempat URL di poin 2 menggunakan Postman, membuat screenshot dari hasil akses URL pada Postman, dan menambahkannya ke dalam README.md.
+- Mengakses XML
+![Alt text](<Screenshot 2024-09-17 at 00.58.57.png>)
+- Mengakses JSON
+![Alt text](<Screenshot 2024-09-17 at 00.59.18.png>)
+- Mengakses XML by ID
+![Alt text](<Screenshot 2024-09-17 at 01.00.56.png>)
+- Mengakses JSON by ID
+![Alt text](<Screenshot 2024-09-17 at 01.01.07.png>)
+
+e. Melakukan add-commit-push ke GitHub.
+![Alt text](<Screenshot 2024-09-18 at 02.14.08.png>)
