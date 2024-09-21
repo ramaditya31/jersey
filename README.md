@@ -29,7 +29,7 @@ Django dijadikan permulaan pembelajaran software development karena framework in
 Karena model Django menghubungkan objek Python ke tabel dalam database relasional. Pengembang dapat berinteraksi dengan database menggunakan kode Python. Ini menghindari penulisan SQL dan memungkinkan pengelolaan data yang efektif melalui pemetaan objek ke format tabel.
 
 __Link__ __Deployment:__
-Tautan PWS: http://rama-aditya31-jerseykuofficial.pbp.cs.ui.ac.id // Tautan Vercel: https://jersey-lxa7.vercel.app
+Tautan PWS: http://rama-aditya31-jerseyku.pbp.cs.ui.ac.id // Tautan Vercel: https://jersey-lxa7.vercel.app
 
 # TUGAS 3
 
