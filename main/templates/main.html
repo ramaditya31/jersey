@@ -2,7 +2,10 @@
 
 {% block content %}
 
-<h1>Catalogue</h1>
+<div class="title">
+  <h2 class="catalogue">My Catalogue</h1>
+  <h4 class="username">@{{ username }}</h4>
+</div>
 
 <div class="row">
     {% for jersey in jersey %}
@@ -56,8 +59,34 @@
   <a href="{% url 'main:add_jersey' %}">
     <button class = "btn">Add Jersey</button>
   </a>
+  <a href="{% url 'main:logout' %}">
+  <button class = "btn">Logout</button>
+  </a>
 </div>
+<h7 class="text-logout">Last Login Session: {{ last_login }}</h5>
 <style> 
+  .navbar{
+    background-color: teal;
+  }
+  .navbar-brand{
+    color: tan;
+  }
+  .title{
+    display: flex;
+    justify-content: space-between;
+  }
+  .catalogue{
+    margin-top: 40px;
+  }
+  .username{
+    margin-top: 40px;
+    color:teal;
+  }
+  .row{
+    display: flex;
+    justify-content: center;
+    margin-top: 30px;
+  }
   .item_table{
     margin-top: 40px;
     border: 2px solid black;
@@ -78,11 +107,16 @@
     border-radius: 15px;
     color: white;
     background-color: black;
+    margin: 0 10px 0 10px;
   }
   .btn:hover{
     background-color: white;
     color: black;
     transform: scale(1.2);
+  }
+  .text-logout{
+    margin-top: 10px;
+    text-align: center;
   }
 </style>
 {% endblock content %}
