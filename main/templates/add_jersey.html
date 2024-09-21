@@ -1,18 +1,70 @@
 {% extends 'base.html' %} 
 {% block content %}
-<h1>Add Jersey</h1>
 
-<form method="POST">
-  {% csrf_token %}
-  <table>
-    {{ form.as_table }}
-    <tr>
-      <td></td>
-      <td>
-        <input type="submit" value="Add Jersey" />
-      </td>
-    </tr>
-  </table>
-</form>
+<div class="add">
+  <h3>Add Jersey</h3>
+  <form method="POST">
+    {% csrf_token %}
+    <table>
+      {{ form.as_table }}
+      <tr>
+        <td></td>
+        <td>
+          <input class="add_btn" type="submit" value="Add Jersey" />
+        </td>
+      </tr>
+    </table>
+  </form>
+</div>
 
+<style>
+    .add {
+        margin: 150px auto;
+        width: 50%;
+        padding: 10px;
+        border: 1px solid;
+        border-radius: 5px;
+        background-color: white;
+    }
+    
+    .add h3 {
+        text-align: center;
+        padding: 10px;
+    }
+    
+    .add_btn {
+        width: 50%;
+        padding: 10px;
+        border: 1px solid;
+        border-radius: 5px;
+        background-color: white;
+        color: black;
+    }
+
+    .add_btn:hover {
+        background-color: teal;
+        color: white;
+    }
+
+    .navbar{
+        background-color: teal;
+    }
+
+    .navbar-brand{
+        color: tan;
+    }
+
+    .btn{
+        border: 1px solid black;
+        padding: 5px 10px 5px 10px;
+        border-radius: 5px;
+        color: black;
+        background-color: tan;
+    }
+
+      .btn:hover{
+          background-color: black;
+          color: white;
+    }
+</style>
 {% endblock %}

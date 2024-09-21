@@ -6,7 +6,7 @@
 
 {% block content %}
 <div class="login">
-  <h1>Login</h1>
+  <h3>Login</h3>
 
   <form method="POST" action="">
     {% csrf_token %}
@@ -14,7 +14,7 @@
       {{ form.as_table }}
       <tr>
         <td></td>
-        <td><input class="btn login_btn" type="submit" value="Login" /></td>
+        <td><input class="login_btn" type="submit" value="Login" /></td>
       </tr>
     </table>
   </form>
@@ -28,5 +28,55 @@
   {% endif %} Don't have an account yet?
   <a href="{% url 'main:register' %}">Register Now</a>
 </div>
+<style>
+    .login {
+        margin: 150px auto;
+        width: 25%;
+        padding: 10px;
+        border: 1px solid;
+        border-radius: 5px;
+        background-color: white;
+    }
+    
+    .login h3 {
+        text-align: center;
+        padding: 10px;
+    }
+    
+    .login_btn {
+        width: 100%;
+        padding: 10px;
+        border: 1px solid;
+        border-radius: 5px;
+        background-color: white;
+        color: black;
+    }
+
+    .login_btn:hover {
+        background-color: teal;
+        color: white;
+    }
+
+    .navbar{
+    background-color: teal;
+    }
+
+    .navbar-brand{
+        color: tan;
+    }
+
+    .btn{
+    border: 1px solid black;
+    padding: 5px 10px 5px 10px;
+    border-radius: 5px;
+    color: black;
+    background-color: tan;
+  }
+
+  .btn:hover{
+    background-color: black;
+    color: white;
+  }
+</style>
 
 {% endblock content %}
