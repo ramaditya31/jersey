@@ -139,6 +139,11 @@ d. Menambahkan parameter commit = False pada variable add_form yang berfungsi ag
 e. Isi field user dengan objek User dari return value request.user untuk menandakan bahwa objek tersebut dimiliki pengguna yang sedang login.
 
 - Membuat dua akun pengguna dengan masing-masing tiga dummy data menggunakan model yang telah dibuat pada aplikasi sebelumnya untuk setiap akun di lokal.
+![Alt text](<Screenshot 2024-09-25 at 03.14.30.png>)
+![Alt text](<Screenshot 2024-09-25 at 03.14.33.png>)
+![Alt text](<Screenshot 2024-09-25 at 03.22.39.png>)
+![Alt text](<Screenshot 2024-09-25 at 03.22.42.png>)
+
 
 - Menampilkan detail informasi pengguna yang sedang logged in seperti username dan menerapkan cookies seperti last login pada halaman utama aplikasi.
 a. Mengimport HttpResponseRedirect, reverse, dan datetime pada file models.py.
@@ -156,3 +161,4 @@ return response
 4. Pada file main.html tambahkan kode <h5>Sesi terakhir login: {{ last_login }}</h5> untuk menampilkan kapan user terakhir login.
 
 - Melakukan add-commit-push ke GitHub.
+![Alt text](<Screenshot 2024-09-25 at 03.34.45.png>)
