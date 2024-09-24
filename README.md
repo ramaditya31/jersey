@@ -86,3 +86,73 @@ d. Mengakses keempat URL di poin 2 menggunakan Postman, membuat screenshot dari 
 
 e. Melakukan add-commit-push ke GitHub.
 ![Alt text](<Screenshot 2024-09-18 at 02.14.08.png>)
+
+
+# TUGAS 4
+
+1. Apa perbedaan antara HttpResponseRedirect() dan redirect()
+- **HttpResponseRedirect()** adalah subclass dari HttpResponse yang digunakan untuk mengirimkan respons pengalihan (redirect) ke pengguna. Fungsi ini secara khusus mengarahkan pengguna ke URL tertentu dengan menghasilkan HttpResponse. Sedangkan **redirect()** adalah fungsi pendek yang lebih mudah digunakan dan fleksibel untuk mengatur pengalihan. Fungsi ini memungkinkan pengalihan dilakukan tanpa perlu menentukan URL secara langsung, terutama saat menggunakan nama view atau objek sebagai parameternya.
+
+2. Jelaskan cara kerja penghubungan model Product dengan User!
+Penghubungan model NewJersey dengan model User dilakukan menggunakan field ForeignKey. Variabel user menyambungkan ke model User dari Django yang memungkinkan setiap penambahan barang disambungkan dengan user yang terdaftar. on_delete_models.CASCADE berfungsi apabila pengguna dihapus, maka semua input barang yang tersambung dengan user tersebut juga akan terhapus secara otomatis. 
+
+3. Apa perbedaan antara authentication dan authorization, apakah yang dilakukan saat pengguna login? Jelaskan bagaimana Django mengimplementasikan kedua konsep tersebut.
+Authentication dan authorization adalah dua konsep kunci dalam keamanan aplikasi web. Authentication memverifikasi identitas pengguna, biasanya saat login dengan username dan password. Authorization menentukan hak akses pengguna setelah terverifikasi, seperti apa yang bisa mereka lihat atau lakukan dalam sistem. Di Django, authentication diatur melalui form login dan backend otentikasi, sedangkan authorization dikelola melalui izin yang dapat diatur pada pengguna atau grup.
+
+4. Bagaimana Django mengingat pengguna yang telah login? Jelaskan kegunaan lain dari cookies dan apakah semua cookies aman digunakan?
+Django menggunakan sesi (session) untuk mengingat pengguna yang sudah login. Setelah berhasil login, Django menyimpan informasi sesi di server, sementara browser menyimpan session ID dalam cookie. Pada permintaan berikutnya, browser mengirim cookie tersebut agar Django bisa mengenali pengguna tanpa perlu login ulang. Selain untuk session ID, cookies juga digunakan untuk menyimpan preferensi pengguna, melacak keranjang belanja, atau analitik. Namun, cookies bisa rentan, sehingga Django menyediakan pengaturan seperti HttpOnly untuk mencegah akses melalui JavaScript dan Secure untuk memastikan cookie hanya dikirim lewat HTTPS.
+
+5. Jelaskan bagaimana cara kamu mengimplementasikan checklist di atas secara step-by-step (bukan hanya sekadar mengikuti tutorial).
+
+- Mengimplenentasikan fungsi registrasi, login, dan logout.
+
+Fungsi Register
+
+a. Mengimport redirect, UserCreationForm, dan messages pada file views.py yang ada pada direktori main.
+b. Membuat fungsi register pada views.py untuk form registrasi dan menghasilkan akun baru ketika data disubmit dari form.
+c. Membuat file register.html pada main/templates untuk membuat interface saat ingin membuat akun.
+d. Mengimport fungsi register ke urls.py yang ada di direktori main.
+e. Menambahkan path URL untuk register pada urls.py
+
+Fungsi Login
+
+a. Mengimport authenticate dan login pada file views.py yang ada pada direktori main.
+b. Membuat fungsi login_user pada views.py untuk mengautentikasi user yang akan login.
+c. Membuat file login.html pada main/templates untuk membuat interface saat pengguna ingin login.
+d. Mengimport fungsi login_user ke urls.py yang ada di direktori main.
+e. Menambahkan path URL untuk login_user pada urls.py
+
+Fungsi Logout
+
+a. Import logout pada file views.py yang ada pada di direktori main.
+b. Membuat fungsi logout_user pada views.py untuk mengautentikas user yang ingin melakukan logout.
+c. Menambahkan button logout pada templates/main.html.
+d. Mengimport fungsi logout_user ke urls.py yang ada di direktori main.
+e. Menambahkan path URL untuk logout_user pada urls.py.
+
+- Menghubungkan model Product dengan User.
+
+a. Import User pada file models.py.
+b. Menambahkan ForeignKey pada model di file models.py untuk menghubungkan barang dengan user.
+c. Ubah fungsi add_jersey yang ada pada views.py.
+d. Menambahkan parameter commit = False pada variable add_form yang berfungsi agar Django tidak langsung menyimpan objek ke database.
+e. Isi field user dengan objek User dari return value request.user untuk menandakan bahwa objek tersebut dimiliki pengguna yang sedang login.
+
+- Membuat dua akun pengguna dengan masing-masing tiga dummy data menggunakan model yang telah dibuat pada aplikasi sebelumnya untuk setiap akun di lokal.
+
+- Menampilkan detail informasi pengguna yang sedang logged in seperti username dan menerapkan cookies seperti last login pada halaman utama aplikasi.
+a. Mengimport HttpResponseRedirect, reverse, dan datetime pada file models.py.
+b. Menambahkan kode pada fungsi login_user untuk melihat status last_login.
+1. Edit blok if user is not None dengan menambahkan kode berikut:
+login(request, user)
+response = HttpResponseRedirect(reverse("main:show_main))
+response.set_cookie('last_login', str(datetime.datetime.now()))
+return response
+2. Pada fungsi show_main tambahkan 'last_login': request.COOKIES['last_login'] pada variabel context.
+3. Ubah fungsi logout_user dengan menambahkan kode:
+response = HttpResponseRedirect(reverse('main:login'))
+response.delete_cookie('last_login')
+return response
+4. Pada file main.html tambahkan kode <h5>Sesi terakhir login: {{ last_login }}</h5> untuk menampilkan kapan user terakhir login.
+
+- Melakukan add-commit-push ke GitHub.
