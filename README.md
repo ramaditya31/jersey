@@ -162,3 +162,34 @@ return response
 
 - Melakukan add-commit-push ke GitHub.
 ![Alt text](<Screenshot 2024-09-25 at 03.34.45.png>)
+
+# TUGAS 5
+
+1. Jika terdapat beberapa CSS selector untuk suatu elemen HTML, jelaskan urutan prioritas pengambilan CSS selector tersebut!
+
+Urutan prioritas pengambilan CSS selector adalah sebagai berikut:
+a. Inline Styles: Gaya yang ditulis langsung pada elemen HTML menggunakan atribut `style` memiliki prioritas tertinggi. Misalnya: `<div style="color: red;">`.
+b. ID Selector:Selector yang menggunakan ID HTML, ditandai dengan `#`, memiliki prioritas lebih tinggi daripada class, attribute, atau element selector. Misalnya: `#header`.
+c. Class, Pseudo-class, dan Attribute Selector: Selector yang menggunakan class (misalnya `.class-name`), pseudo-class (misalnya `:hover`), atau attribute selector (misalnya `[type="text"]`) berada di urutan berikutnya dalam hal prioritas.
+d. Element dan Pseudo-element Selector: Selector berdasarkan nama elemen HTML (misalnya `div`, `p`) atau pseudo-element (misalnya `::before`, `::after`) memiliki prioritas yang paling rendah.
+e. Universal Selector (`*`) dan Inheritance: Selector universal (`*`) dan aturan CSS yang diwariskan dari elemen induk tidak memiliki prioritas tinggi, tetapi tetap berlaku jika tidak ada gaya lain yang lebih spesifik.
+
+2. Mengapa responsive design menjadi konsep yang penting dalam pengembangan aplikasi web? Berikan contoh aplikasi yang sudah dan belum menerapkan responsive design!
+
+Responsive design penting dalam pengembangan aplikasi web karena memungkinkan tampilan dan fungsi situs atau aplikasi beradaptasi dengan berbagai ukuran layar dan perangkat (desktop, tablet, smartphone). Dengan semakin banyaknya pengguna yang mengakses web melalui perangkat mobile, responsive design memastikan pengalaman pengguna yang optimal di semua perangkat, meningkatkan aksesibilitas, keterbacaan, dan navigasi. Contoh aplikasi yang sudah menerapkan responsive design adalah Twitter, tampilannya menyesuaikan di berbagai perangkat, memberikan pengalaman konsisten di desktop dan mobile. Contoh aplikasi yang belum menerapkan responsive design adalah Old CraigList.
+
+3. Jelaskan perbedaan antara margin, border, dan padding, serta cara untuk mengimplementasikan ketiga hal tersebut!
+
+- Margin adalah ruang di luar elemen, yang mempengaruhi seberapa jauh elemen tersebut dari elemen lain. Margin diatur menggunakan properti `margin`, dengan nilai bisa diterapkan secara individual (atas, kanan, bawah, kiri) atau sekaligus.
+- Border adalah ruang yang disekitar elemen atau garis yang membungkus padding. Border diatur menggunakan properti `border`, dengan nilai seperti `border-width`, `border-style`, dan `border-color`.
+- Padding adalah ruang di dalam elemen, yang mempengaruhi seberapa jauh konten dari tepi elemen. Padding diatur menggunakan properti `padding`, serupa dengan margin, bisa diterapkan untuk tiap sisi atau sekaligus.
+
+4. Jelaskan konsep flex box dan grid layout beserta kegunaannya!
+
+a. Flexbox
+Flexbox adalah metode layout CSS yang dirancang untuk menyusun elemen dalam satu dimensi, baik secara horizontal (baris) atau vertikal (kolom). Flexbox memudahkan pengaturan posisi, ukuran, dan distribusi ruang antar elemen dalam sebuah kontainer, tanpa bergantung pada ukuran tetap atau posisi manual. Flexbox, untuk satu dimensi (baris atau kolom), cocok untuk elemen dalam satu garis.
+
+b. Grid Layout
+Grid layout adalah metode layout dua dimensi yang memungkinkan kita membuat tata letak yang lebih kompleks, baik secara horizontal maupun vertikal. Grid memungkinkan untuk membuat layout berbasis baris dan kolom secara bersamaan, dengan kontrol penuh terhadap elemen-elemen yang ada di dalam grid. Grid layout, untuk dua dimensi (baris dan kolom), cocok untuk tata letak halaman yang lebih kompleks.
+
+5. Jelaskan bagaimana cara kamu mengimplementasikan checklist di atas secara step-by-step (bukan hanya sekadar mengikuti tutorial)!

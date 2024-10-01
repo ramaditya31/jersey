@@ -1,70 +1,118 @@
-{% extends 'base.html' %} 
-{% block content %}
+{% extends 'base.html' %}
 
-<div class="add">
-  <h3>Add Jersey</h3>
-  <form method="POST">
-    {% csrf_token %}
-    <table>
-      {{ form.as_table }}
-      <tr>
-        <td></td>
-        <td>
-          <input class="add_btn" type="submit" value="Add Jersey" />
-        </td>
-      </tr>
-    </table>
-  </form>
+{% block content %}
+{% include 'navbar.html' %}
+
+<div class="container d-flex align-items-center justify-content-center min-vh-100" style="margin-top: 50px;">
+  <div class="col-lg-5 col-md-7 col-sm-10">
+    <div class="card shadow-lg p-4" style="max-width: 500px; width: 100%; margin: auto;">
+      <div class="card-body">
+        <h2 class="text-center title text-dark">
+          Add Jersey
+        </h2>
+        <form method="POST" class="w-100">
+          {% csrf_token %}
+          <div class="form-group mb-3">
+            {{ form.as_p }}
+          </div>
+
+          <div class="d-grid">
+            <button type="submit" class="btn btn-primary btn-block large-btn">Add Jersey</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
 </div>
 
 <style>
-    .add {
-        margin: 150px auto;
-        width: 50%;
-        padding: 10px;
-        border: 1px solid;
-        border-radius: 5px;
-        background-color: white;
-    }
-    
-    .add h3 {
-        text-align: center;
-        padding: 10px;
-    }
-    
-    .add_btn {
-        width: 50%;
-        padding: 10px;
-        border: 1px solid;
-        border-radius: 5px;
-        background-color: white;
-        color: black;
+  body {
+    background-color: #eae5e0;
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+  }
+
+  .min-vh-100 {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .card {
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    width: 100%;
+    max-width: 500px; /* Batasi lebar form */
+    margin: 0 auto;
+    padding: 20px;
+  }
+
+  .title {
+    font-size: 1.5rem;
+    font-weight: bold;
+    margin-bottom: 20px;
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+  }
+
+  .form-group {
+    width: 100%;
+  }
+
+  .form-control {
+    border-radius: 5px;
+    padding: 10px;
+    font-size: 1rem;
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+  }
+
+  .btn {
+    width: 100%;
+    padding: 10px;
+    border-radius: 5px;
+    font-size: 1rem;
+    font-weight: bold;
+    background-color: #8b1a1a;
+    color: white;
+    border: none;
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+  }
+
+  .btn:hover {
+    background-color: rgb(82, 12, 12);
+  }
+
+  .btn-block {
+    display: block;
+    width: 100%;
+  }
+
+  @media (max-width: 768px) {
+    .title {
+      font-size: 1.25rem;
     }
 
-    .add_btn:hover {
-        background-color: teal;
-        color: white;
+    .form-control {
+      font-size: 0.9rem;
     }
 
-    .navbar{
-        background-color: teal;
+    .btn {
+      font-size: 0.9rem;
+    }
+  }
+
+  @media (max-width: 576px) {
+    .title {
+      font-size: 1.1rem;
     }
 
-    .navbar-brand{
-        color: tan;
+    .form-control {
+      font-size: 0.85rem;
     }
 
-    .btn{
-        border: 1px solid black;
-        padding: 5px 10px 5px 10px;
-        border-radius: 5px;
-        color: black;
-        background-color: tan;
+    .btn {
+      font-size: 0.85rem;
     }
-
-      .btn:hover{
-          background-color: black;
-          color: white;
-    }
+  }
 </style>
-{% endblock %}
+
+{% endblock content %}

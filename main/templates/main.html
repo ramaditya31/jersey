@@ -1,122 +1,261 @@
 {% extends 'base.html' %}
-
+{% load static %}
 {% block content %}
+{% include 'navbar.html' %}
 
-<div class="title">
-  <h2 class="catalogue">My Catalogue</h1>
-  <h4 class="username">@{{ username }}</h4>
+<div id="carouselExampleIndicators" class="carousel slide" data-bs-ride="carousel">
+  <div class="carousel-inner" id="home1-section">
+    <div class="carousel-item active">
+      <div class="carousel-caption d-none d-md-block overlay">
+        <h5>Welcome to Jerseyku Official Store</h5>
+        <p>Established in 2023 in the vibrant city of Bandung by visionary founder Rama Harmono, Jerseyku is your ultimate destination for both vintage and brand-new jerseys. We combine a love for the game with timeless style, offering exclusive collections that cater to true sports enthusiasts and fashion-forward fans alike.</p>
+      </div>
+    </div>
+    <div class="carousel-item" id="home2-section">
+      <div class="carousel-caption d-none d-md-block overlay">
+        <h5>Quotes</h5>
+        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Maxime, nulla, tempore. Deserunt excepturi quas vero.</p>
+      </div>
+    </div>
+  </div>
+
+  <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-bs-slide="prev">
+    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+    <span class="sr-only">Previous</span>
+  </a>
+
+  <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-bs-slide="next">
+    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+    <span class="sr-only">Next</span>
+  </a>
 </div>
 
-<div class="row">
+<div class="container mt-5" id="catalogue-section">
+  <div class="d-flex justify-content-between align-items-center mb-4">
+    <h2 class="catalogue">My Catalogue</h2>
+  </div>
+
+  <div class="row g-4">
     {% for jersey in jersey %}
-    <div class="col">
-        <div class="card" style="width: 18rem;">
-            <img src="{{ jersey.image }}" class="card-img-top" alt="...">
-            <div class="card-body">
-              <h5 class="card-title">{{ jersey.name }} </h5>
-              <p class="card-text">Description : <br> {{ jersey.description }}</p>
-            </div>
-            <ul class="list-group list-group-flush">
-              <li class="list-group-item">Price : ${{ jersey.price }}</li>
-              <li class="list-group-item">Stock : {{ jersey.quantity }} Items</li>
-            </ul>
-            <div class="card-body">
-              <a href="#" class="card-link">Purchase</a>
-              <a href="#" class="card-link">Add to Cart</a>
-            </div>
+    <div class="col-lg-4 col-md-6 col-sm-12">
+      <div class="card shadow-sm h-100">
+        <img src="{{ jersey.image }}" class="card-img-top img-fluid" alt="{{ jersey.name }}">
+        <div class="card-body">
+          <h5 class="card-title">{{ jersey.name }}</h5>
+          <p class="card-text"><strong>Description:</strong> {{ jersey.description }}</p>
         </div>
+        <ul class="list-group list-group-flush">
+          <li class="list-group-item"><strong>Price:</strong> ${{ jersey.price }}</li>
+          <li class="list-group-item"><strong>Stock:</strong> {{ jersey.quantity }} Items</li>
+        </ul>
+        <div class="card-body text-center">
+          <a href="{% url 'main:edit_jersey' jersey.pk %}" class="btn btn-sm btn-warning">Edit</a>
+          <a href="{% url 'main:delete_jersey' jersey.pk %}" class="btn btn-sm btn-danger">Delete</a>
+        </div>
+      </div>
     </div>
     {% endfor %}
+  </div>
 
-{% if not jersey %}
-<p>Gagal menambahkan jersey.</p>
-{% else %}
-<table class = "item_table">
-  <tr class="title-table">
-    <th>Jersey Name</th>
-    <th>Price</th>
-    <th>Description</th>
-    <th>Quantity</th>
-    <th>Time</th>
-  </tr>
+  {% if not jersey %}
+  <div class="text-center mt-5">
+    <img src="{% static 'image/mudryk.png' %}" alt="No Data" class="img-thumbnail">
+    <p class="text-danger mt-4">"Jersey belum di add kawan" - El Dear God</p>
+  </div>
+  {% endif %}
 
-  {% comment %} Berikut cara memperlihatkan data jersey di bawah baris ini 
-  {% endcomment %} 
-  {% for baju in jersey %}
-  <tr>
-    <td>{{baju.name}}</td>
-    <td>{{baju.price}}</td>
-    <td>{{baju.description}}</td>
-    <td>{{baju.quantity}}</td>
-    <td>{{baju.time}}</td>
-  </tr>
-  {% endfor %}
-</table>
-{% endif %}
+  <div class="text-center mt-4">
+    <a href="{% url 'main:add_jersey' %}" class="btn btn-dark btn_add btn-block">Add Jersey</a>
+    <a href="{% url 'main:logout' %}" class="btn btn-outline-dark btn_logout btn-block">Logout</a>
+  </div>
 
-<br />
-<div class="btn-container">
-  <a href="{% url 'main:add_jersey' %}">
-    <button class = "btn">Add Jersey</button>
-  </a>
-  <a href="{% url 'main:logout' %}">
-  <button class = "btn">Logout</button>
-  </a>
+  <p class="text-center text-muted mt-3">Last Login Session: {{ last_login }}</p>
 </div>
-<h7 class="text-logout">Last Login Session: {{ last_login }}</h5>
-<style> 
-  .navbar{
-    background-color: teal;
+
+<style>
+  .carousel-item.active {
+    background: url("{% static 'image/puskas.webp' %}") no-repeat center center;
+    background-size: 100%;
+    height: 100vh;
+    position: relative;
   }
-  .navbar-brand{
-    color: tan;
+
+  .overlay {
+    background-color: rgba(0, 0, 0, 0.5);
+    padding: 20px;
+    border-radius: 10px;
   }
-  .title{
-    display: flex;
-    justify-content: space-between;
-  }
-  .catalogue{
-    margin-top: 40px;
-  }
-  .username{
-    margin-top: 40px;
-    color:teal;
-  }
-  .row{
-    display: flex;
-    justify-content: center;
-    margin-top: 30px;
-  }
-  .item_table{
-    margin-top: 40px;
-    border: 2px solid black;
+
+  .carousel-caption {
+    position: absolute;
+    bottom: 20%;
+    left: 0;
+    right: 0;
+    color: #fff;
+    padding: 20px;
     text-align: center;
-  }
-  .title-table{
-    background-color: black;
-    color: white;
-  }
-  .btn-container{
+}
+
+.carousel-caption h5 {
+    font-size: 3vw; /* Ukuran font yang responsif */
+    text-transform: uppercase;
+    letter-spacing: 2px;
     margin-top: 25px;
-    display: flex;
-    justify-content: center;
+    color: #fff;
+}
+
+.carousel-caption p {
+    width: 75%;
+    margin: auto;
+    font-size: 1.5vw;
+    line-height: 1.9;
+    color: #fff;
+}
+
+@media (max-width: 768px) {
+    .carousel-caption {
+        bottom: 15%; /* Geser teks lebih ke bawah pada layar kecil */
+    }
+
+    .carousel-caption h5 {
+        font-size: 5vw; /* Perbesar ukuran font pada layar kecil */
+    }
+
+    .carousel-caption p {
+        font-size: 3vw; /* Sesuaikan ukuran teks deskripsi */
+    }
+}
+
+@media (max-width: 576px) {
+    .carousel-caption {
+        bottom: 10%; /* Lebih geser lagi pada layar yang lebih kecil */
+    }
+
+    .carousel-caption h5 {
+        font-size: 6vw; /* Sesuaikan font lebih besar pada layar sangat kecil */
+    }
+
+    .carousel-caption p {
+        font-size: 4vw; /* Ukuran teks deskripsi juga diperbesar */
+    }
+}
+
+
+  body {
+    background-color: #eae5e0;
   }
-  .btn{
-    border: 1px solid black;
-    padding: 5px 10px 5px 10px;
-    border-radius: 15px;
+
+  .container {
+    max-width: 1200px;
+  }
+
+  .catalogue {
+    font-size: 2.5rem;
+    font-weight: bold;
+    margin: 0;
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+  }
+
+  .username {
+    color: #007bff;
+  }
+
+  .card {
+    border: none;
+    transition: transform 0.2s;
+  }
+
+  .card:hover {
+    transform: scale(1.05);
+  }
+
+  .card-img-top {
+    height: 200px;
+    object-fit: contain;
+  }
+
+  .card-title {
+    font-size: 1.25rem;
+    font-weight: bold;
+  }
+
+  .btn {
+    padding: 10px 20px;
+    font-size: 1rem;
+    border-radius: 25px;
+    font-family:'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+  }
+
+  .img-thumbnail {
+    max-width: 300px;
+    opacity: 0.8;
+    border: none;
+    border-radius: 10px;
+  }
+
+  .text-muted {
+    font-size: 0.875rem;
+  }
+
+  .btn-danger {
+    border-color: #8b1a1a;
+    background-color: #8b1a1a;
+    border: none;
+  }
+
+  .btn-danger:hover {
+    border-color: rgb(82, 12, 12);
+    background-color: rgb(82, 12, 12);
+    border: none;
+  }
+
+  .btn-warning {
+    border-color: #4b5320;
+    background-color: #4b5320;
     color: white;
-    background-color: black;
-    margin: 0 10px 0 10px;
+    border: none;
   }
-  .btn:hover{
+
+  .btn-warning:hover {
+    border-color: #383e15;
+    background-color: #383e15;
+    color: white;
+    border: none;
+  }
+
+  .btn_add {
+    background-color: black;
+    color: white;
+  }
+
+  .btn_add:hover {
     background-color: white;
     color: black;
-    transform: scale(1.2);
   }
-  .text-logout{
-    margin-top: 10px;
-    text-align: center;
+
+  .btn_logout {
+    background-color: #8b1a1a;
+    color: white;
+  }
+
+  .btn_logout:hover {
+    background-color: white;
+    color: black;
+  }
+
+  .sr-only {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    -webkit-clip-path: inset(50%);
+    clip-path: inset(50%);
+    border: 0;
+
+    
   }
 </style>
 {% endblock content %}
