@@ -193,3 +193,585 @@ b. Grid Layout
 Grid layout adalah metode layout dua dimensi yang memungkinkan kita membuat tata letak yang lebih kompleks, baik secara horizontal maupun vertikal. Grid memungkinkan untuk membuat layout berbasis baris dan kolom secara bersamaan, dengan kontrol penuh terhadap elemen-elemen yang ada di dalam grid. Grid layout, untuk dua dimensi (baris dan kolom), cocok untuk tata letak halaman yang lebih kompleks.
 
 5. Jelaskan bagaimana cara kamu mengimplementasikan checklist di atas secara step-by-step (bukan hanya sekadar mengikuti tutorial)!
+
+- Implementasikan fungsi untuk menghapus dan mengedit product.
+a. Membuat fungsi baru bernama edit_jersey dan delete_jersey yang menerima parameter request dan id:
+
+def edit_jersey(request, id):
+    # Get new jersey berdasarkan id
+    jersey = NewJersey.objects.get(pk = id)
+
+    # Set new jersey sebagai instance dari form
+    form = JerseyForm(request.POST or None, instance=jersey)
+
+    if form.is_valid() and request.method == "POST":
+        # Simpan form dan kembali ke halaman awal
+        form.save()
+        return HttpResponseRedirect(reverse('main:show_main'))
+
+    context = {'form': form}
+    return render(request, "edit_jersey.html", context)
+
+def delete_jersey(request, id):
+    # Get mood berdasarkan id
+    jersey = NewJersey.objects.get(pk = id)
+    # Hapus mood
+    jersey.delete()
+    # Kembali ke halaman awal
+    return HttpResponseRedirect(reverse('main:show_main'))
+
+b. Menambahkan import reverse pada views.py:
+
+from django.shortcuts import .., reverse
+
+c. Membuat berkas HTML baru dengan nama edit_jersey.html pada subdirektori main/templates.
+
+{% extends 'base.html' %}
+
+{% load static %}
+
+{% block content %}
+
+<h1>Edit Jersey</h1>
+
+<form method="POST">
+    {% csrf_token %}
+    <table>
+        {{ form.as_table }}
+        <tr>
+            <td></td>
+            <td>
+                <input type="submit" value="Edit Jersey"/>
+            </td>
+        </tr>
+    </table>
+</form>
+
+{% endblock %}
+
+d. Mengimport fungsi edit_jersey dan delete_jersey ke urls.py
+
+from main.views import edit_jersey, delete_jersey
+
+e. Menambahkan path url ke urlpatterns:
+
+path('edit-jersey/<uuid:id>/', edit_jersey, name='edit_jersey'),
+path('delete-jersey/<uuid:id>/', delete_jersey, name='delete_jersey')
+
+f. Menambahkan kode ke main.html di card
+
+<div class="card-body text-center">
+    <a href="{% url 'main:edit_jersey' jersey.pk %}" class="btn btn-sm btn-warning">Edit</a>
+    <a href="{% url 'main:delete_jersey' jersey.pk %}" class="btn btn-sm btn-danger">Delete</a>
+</div>
+
+
+- Kustomisasi desain pada template HTML yang telah dibuat pada tugas-tugas sebelumnya menggunakan CSS atau CSS framework Bootstrap dengan ketentuan sebagai berikut:
+
+a. Halaman Login:
+{% extends 'base.html' %}
+{% load static %}
+{% block meta %}
+<title>Login</title>
+{% endblock meta %}
+
+{% block content %}
+<div class="container-fluid">
+  <div class="row vh-100">
+    <div class="col-md-6 p-0">
+      <img src="{% static 'image/legend.jpeg' %}" alt="background" class="img-fluid h-100 w-100" style="object-fit: cover;">
+    </div>
+
+    <div class="col-md-6 d-flex flex-column align-items-center justify-content-center">
+      <div class="text-center mb-4">
+        <h1 class="site-title">JERSEYKU .</h1>
+      </div>
+
+      <div class="login shadow-lg p-4">
+        <h3 class="mb-4">Login</h3>
+
+        <form method="POST" action="">
+          {% csrf_token %}
+          <div class="mb-3">
+            <label for="username" class="form-label">Username</label>
+            <input type="text" id="username" name="username" class="form-control rounded-pill" placeholder="Enter your username" required>
+          </div>
+          
+          <div class="mb-3">
+            <label for="password" class="form-label">Password</label>
+            <input type="password" id="password" name="password" class="form-control rounded-pill" placeholder="Enter your password" required>
+          </div>
+          
+          <div class="d-grid gap-2">
+            <button type="submit" class="btn btn-primary btn-block rounded-pill login_btn">Enter</button>
+          </div>
+        </form>
+
+        {% if messages %}
+        <ul class="mt-3">
+          {% for message in messages %}
+          <li class="alert alert-info">{{ message }}</li>
+          {% endfor %}
+        </ul>
+        {% endif %}
+        
+        <div class="mt-3 text-center">
+          <p class="text-muted">Don't have an account yet? 
+            <a href="{% url 'main:register' %}" class="text-primary text-decoration">Register Now</a>
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<style>
+    body {
+        background-color: #eae5e0;
+    }
+
+    .login {
+        background-color: white;
+        border-radius: 15px;
+        max-width: 400px;
+        width: 100%;
+        padding: 30px;
+        box-shadow: 0 8px 15px rgba(0, 0, 0, 0.1); 
+    }
+    
+    .site-title {
+        font-size: 2.5rem;
+        font-weight: bold;
+        color: #333;
+        text-align: center;
+        font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+        margin-bottom: 20px;
+    }
+
+    .login h3 {
+        font-size: 1.5rem;
+        font-weight: bold;
+        color: #333;
+        text-align: center;
+        font-family:'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+    }
+
+    .form-control {
+        padding: 12px 20px;
+        border: 1px solid #ced4da;
+        border-radius: 50px;
+        background-color: #f9f9f9;
+        font-size: 1rem;
+        transition: all 0.3s ease;
+    }
+    
+    .form-control:focus {
+        border-color: #717c31;
+        box-shadow: 0 0 10px rgba(0, 123, 255, 0.2);
+        background-color: white;
+    }
+
+    .form-label {
+        margin-top: 10px;
+        font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+    }
+
+    .login_btn {
+        font-size: 1.2rem;
+        padding: 10px 0;
+        background-color: #8b1a1a;
+        border: none;
+        color: white;
+        border-radius: 50px;
+        transition: background-color 0.3s ease;
+        font-family:'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+    }
+
+    .login_btn:hover {
+        background-color: rgb(82, 12, 12);
+    }
+
+    .text-muted {
+        font-size: 0.9rem;
+        font-variant: small-caps;
+    }
+</style>
+
+{% endblock content %}
+
+b. Halaman Register
+{% extends 'base.html' %}
+
+{% block meta %}
+<title>Register</title>
+{% endblock meta %}
+
+{% block content %}
+<div class="container d-flex align-items-center justify-content-center min-vh-100">
+  <div class="col-lg-6 col-md-8 col-sm-10">
+    <div class="card shadow-lg p-4">
+      <div class="card-body">
+        <h2 class="text-center title text-dark">
+          Create your account
+        </h2>
+        <form method="POST" class="d-flex flex-column align-items-center">
+          {% csrf_token %}
+          <div class="mb-3 w-75">
+            {% for field in form %}
+              <div class="form-group w-100 text-center">
+                <label for="{{ field.id_for_label }}" class="form-label">{{ field.label }}</label>
+                <div class="input-group justify-content-center">
+                  {{ field }}
+                  {% if field.errors %}
+                    <div class="input-group-append">
+                      <span class="input-group-text bg-danger text-white">
+                        <i class="fas fa-exclamation-triangle"></i>
+                      </span>
+                    </div>
+                  {% endif %}
+                </div>
+                {% if field.errors %}
+                  {% for error in field.errors %}
+                    <div class="text-danger small mt-1">{{ error }}</div>
+                  {% endfor %}
+                {% endif %}
+              </div>
+            {% endfor %}
+          </div>
+
+          <div class="d-grid w-50">
+            <button type="submit" class="btn btn-primary btn-block large-btn">
+              Register
+            </button>
+          </div>
+        </form>
+
+        {% if messages %}
+        <div class="mt-4">
+          {% for message in messages %}
+          <div class="alert alert-danger" role="alert">
+            {{ message }}
+          </div>
+          {% endfor %}
+        </div>
+        {% endif %}
+
+        <div class="text-center mt-4">
+          <p class="text-dark">
+            Already have an account?
+            <a href="{% url 'main:login' %}" class="text-primary">
+              Login here
+            </a>
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<style>
+    body {
+    background-color: #eae5e0;
+     }
+     
+    .min-vh-100 {
+        min-height: 100vh;
+        font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+    }
+
+    .card {
+        border-radius: 20px;
+        box-shadow: 0 8px 15px rgba(0, 0, 0, 0.1);
+    }
+
+    .title {
+        font-weight: bold;
+        color: #333;
+        font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+        padding: 20px;
+    }
+
+    .form-group {
+        margin-bottom: 1.5rem;
+        text-align: center;
+    }
+
+    .form-control {
+        width: 75%;
+        margin: 0 auto;
+        border-radius: 50px;
+        padding: 10px;
+        text-align: center;
+    }
+    
+    .large-btn {
+        border-radius: 50px;
+        padding: 15px;
+        font-size: 1.25rem;
+        font-weight: bold;
+        background-color: #8b1a1a;
+        border: none;
+        width: 100%;
+    }
+
+    .large-btn:hover {
+        background-color: rgb(82, 12, 12);
+    }
+
+    .d-grid {
+        display: grid;
+        place-items: center;
+    }
+
+    .mt-4 {
+        margin-top: 1.5rem;
+        text-transform: uppercase;
+    }
+</style>
+
+{% endblock content %}
+
+c. Halaman Add Product:
+{% extends 'base.html' %}
+
+{% block content %}
+{% include 'navbar.html' %}
+
+<div class="container d-flex align-items-center justify-content-center min-vh-100" style="margin-top: 50px;">
+  <div class="col-lg-5 col-md-7 col-sm-10">
+    <div class="card shadow-lg p-4" style="max-width: 500px; width: 100%; margin: auto;">
+      <div class="card-body">
+        <h2 class="text-center title text-dark">
+          Add Jersey
+        </h2>
+        <form method="POST" class="w-100">
+          {% csrf_token %}
+          <div class="form-group mb-3">
+            {{ form.as_p }}
+          </div>
+
+          <div class="d-grid">
+            <button type="submit" class="btn btn-primary btn-block large-btn">Add Jersey</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+
+<style>
+  body {
+    background-color: #eae5e0;
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+  }
+
+  .min-vh-100 {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .card {
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    width: 100%;
+    max-width: 500px; /* Batasi lebar form */
+    margin: 0 auto;
+    padding: 20px;
+  }
+
+  .title {
+    font-size: 1.5rem;
+    font-weight: bold;
+    margin-bottom: 20px;
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+  }
+
+  .form-group {
+    width: 100%;
+  }
+
+  .form-control {
+    border-radius: 5px;
+    padding: 10px;
+    font-size: 1rem;
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+  }
+
+  .btn {
+    width: 100%;
+    padding: 10px;
+    border-radius: 5px;
+    font-size: 1rem;
+    font-weight: bold;
+    background-color: #8b1a1a;
+    color: white;
+    border: none;
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+  }
+
+  .btn:hover {
+    background-color: rgb(82, 12, 12);
+  }
+
+  .btn-block {
+    display: block;
+    width: 100%;
+  }
+
+  @media (max-width: 768px) {
+    .title {
+      font-size: 1.25rem;
+    }
+
+    .form-control {
+      font-size: 0.9rem;
+    }
+
+    .btn {
+      font-size: 0.9rem;
+    }
+  }
+
+  @media (max-width: 576px) {
+    .title {
+      font-size: 1.1rem;
+    }
+
+    .form-control {
+      font-size: 0.85rem;
+    }
+
+    .btn {
+      font-size: 0.85rem;
+    }
+  }
+</style>
+
+{% endblock content %}
+
+d. Halaman Navbar:
+<nav class="navbar navbar-expand-lg navbar-light fixed-top">
+  <div class="container">
+    <a class="navbar-brand" href="#">JERSEYKU .</a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ms-auto">
+        <li class="nav-item active">
+          <a class="nav-link" href="#carouselExampleIndicators">Home</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#catalogue-section">Catalogue</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#">Welcome, {{ user.username }}</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link logout-link" href="{% url 'main:logout' %}">Logout</a>
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav>
+
+<style>
+body {
+  font-family: 'Poppins', sans-serif;
+}
+
+.navbar {
+  background: linear-gradient(
+    to bottom,
+    #8b1a1a 5%, 
+    #d3b89c 5% 10%, 
+    #4b5320 10% 90%, 
+    #d3b89c 90% 95%, 
+    #8b1a1a 95% 100% 
+  );
+}
+
+.navbar-light .navbar-brand {
+  color: #fff;
+  font-size: 25px;
+  text-transform: uppercase;
+  font-weight: bold;
+  letter-spacing: 2px;
+}
+
+.navbar-light .navbar-nav .active > .nav-link, .navbar-light .navbar-nav .nav-link.active, .navbar-light .navbar-nav .nav-link.show, .navbar-light .navbar-nav .show > .nav-link {
+  color: #fff;
+}
+
+.navbar-light .navbar-nav .nav-link {
+  color: #fff;
+}
+
+.navbar-toggler {
+  background: #fff;
+}
+
+.navbar-nav {
+  text-align: center;
+}
+
+.nav-link {
+  padding: .2rem 1rem;
+}
+
+.nav-link.active,.nav-link:focus{
+  color: #fff;
+}
+
+.navbar-toggler {
+  padding: 1px 5px;
+  font-size: 18px;
+  line-height: 0.3;
+}
+
+.navbar-light .navbar-nav .nav-link:focus, .navbar-light .navbar-nav .nav-link:hover {
+  color: #fff;
+}
+
+.nav-item{
+  font-family: 'Poppins', sans-serif;
+  margin-right: 20px;
+  text-transform: uppercase;
+  font-size: 12px;
+}
+
+.logout-link {
+  border: 2px;
+  border-radius: 10px; 
+  background-color: #8b1a1a;
+  color: white;
+}
+
+.logout-link:hover {
+  background-color: #701212;
+}
+
+.link-area
+{
+  position:fixed;
+  bottom:20px;
+  left:20px;  
+  padding:15px;
+  border-radius:40px;
+  background:tomato;
+}
+.link-area a
+{
+  text-decoration:none;
+  color:#fff;
+  font-size:25px;
+}
+</style>
+
+<script>
+          
+
+</script>
