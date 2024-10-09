@@ -1,5 +1,5 @@
 from django.urls import path
-from main.views import show_main, add_jersey, show_xml, show_json, show_xml_by_id, show_json_by_id, register, login_user, logout_user, edit_jersey, delete_jersey
+from main.views import show_main, add_jersey, show_xml, show_json, show_xml_by_id, show_json_by_id, register, login_user, logout_user, edit_jersey, delete_jersey, add_jersey_ajax
 
 app_name = 'main'
 
@@ -14,5 +14,6 @@ urlpatterns = [
     path('logout/', logout_user, name='logout'),
     path('login/', login_user, name='login'),
     path('edit-jersey/<uuid:id>/', edit_jersey, name='edit_jersey'),
-    path('delete-jersey/<uuid:id>/', delete_jersey, name='delete_jersey')
+    path('delete-jersey/<uuid:id>/', delete_jersey, name='delete_jersey'),
+    path('add-jersey-ajax', add_jersey_ajax, name='add_jersey_ajax')
  ]

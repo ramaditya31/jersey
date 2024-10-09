@@ -1,261 +1,373 @@
 {% extends 'base.html' %}
 {% load static %}
+{% block meta %}
+<script src="https://cdn.jsdelivr.net/npm/dompurify@3.1.7/dist/purify.min.js"></script>
+{% endblock meta %}
 {% block content %}
 {% include 'navbar.html' %}
 
+<style>
+  .text-center {
+    text-align: center;
+    font-size: small;
+  }
+  .centered-image {
+    width: 150px; 
+    height: auto;
+    display: block; 
+    margin: 0 auto; 
+  }
+  .no-data-container {
+    height: 300px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center; 
+    align-items: center;
+  }
+
+  .carousel-item {
+    position: relative;
+    height: 100vh; 
+    background-size: cover;
+  }
+
+  .overlay {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 80%;
+    text-align: center;
+    color: white;
+    background-color: rgba(0, 0, 0, 0.5);
+    padding: 20px;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+   
+  .jersey-card, .card {
+    margin-bottom: 20px; 
+  }
+
+  
+  .card-img-top {
+    width: 100%; 
+    height: 200px; 
+    object-fit: contain; 
+  }
+
+  .card:hover {
+    transform: scale(1.03);
+    transition: transform 0.3s ease;
+  }
+
+
+  .card-title {
+    font-weight: bold;
+  }
+
+  /* Button styles (unchanged) */
+  .btn-warning {
+    background-color: #4b5320;
+    border-color: #4b5320;
+    color: white;
+  }
+
+  .btn-warning:hover {
+    background-color: #383e15;
+    border-color: #383e15;
+    color: white;
+  }
+
+  .btn-danger {
+    background-color: #8b1a1a;
+    border-color: #8b1a1a;
+    color: white;
+  }
+
+  .btn-danger:hover {
+    background-color: #7a1616;
+    border-color: #7a1616;
+    color: white;
+  }
+
+  body {background-color: #eae5e0;}
+  .container {max-width: 1200px;}
+  .catalogue {font-size: 2rem; font-weight: bold;}
+  .btn {border-radius: 25px;font-family: 'Verdana', Arial, sans-serif;}
+
+
+  .btn-ajax {
+    background-color: #2a2828;
+    border: 2px solid #2a2828;
+    color: rgb(232, 232, 232);
+  }
+
+  .btn-ajax:hover {
+    background-color: white;
+    border: 2px solid #2a2828;
+    color: #2a2828;
+  }
+
+  .btn-nonajax {
+    background-color: #2a2828;
+    border: 2px solid #2a2828;
+    color: rgb(232, 232, 232);
+  }
+
+  .btn-nonajax:hover {
+    background-color: white;
+    border: 2px solid #2a2828;
+    color: #2a2828;
+  }
+
+  .btn-primary{
+    background-color: #4b5320;
+    border: 2px #4b5320;
+    color: #e6e6e6;
+  }
+
+  .btn-primary:hover{
+    background-color: #383e15;
+    border: 2px #383e15;
+    color: #e6e6e6;
+  }
+
+</style>
+
 <div id="carouselExampleIndicators" class="carousel slide" data-bs-ride="carousel">
-  <div class="carousel-inner" id="home1-section">
-    <div class="carousel-item active">
-      <div class="carousel-caption d-none d-md-block overlay">
-        <h5>Welcome to Jerseyku Official Store</h5>
-        <p>Established in 2023 in the vibrant city of Bandung by visionary founder Rama Harmono, Jerseyku is your ultimate destination for both vintage and brand-new jerseys. We combine a love for the game with timeless style, offering exclusive collections that cater to true sports enthusiasts and fashion-forward fans alike.</p>
+  <div class="carousel-inner">
+    <div class="carousel-item active" style="background-image: url('{% static 'image/puskas.webp' %}');">
+      <div class="overlay">
+        <div class="text-content">
+          <h5>Welcome to Jerseyku Official Store</h5>
+          <p>Established in 2023 in the vibrant city of Bandung by visionary founder Rama Harmono, Jerseyku is your ultimate destination for both vintage and brand-new jerseys. We combine a love for the game with timeless style, offering exclusive collections that cater to true sports enthusiasts and fashion-forward fans alike.</p>
+        </div>
       </div>
     </div>
-    <div class="carousel-item" id="home2-section">
-      <div class="carousel-caption d-none d-md-block overlay">
-        <h5>Quotes</h5>
-        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Maxime, nulla, tempore. Deserunt excepturi quas vero.</p>
+    <div class="carousel-item" style="background-image: url('{% static 'image/cantona.jpeg' %}');">
+      <div class="overlay">
+        <div class="text-content">
+          <h5>Quotes</h5>
+          <p>“Become a legend? But I am already.”<br>— Eric Cantona</p>
+        </div>
       </div>
     </div>
   </div>
-
   <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-bs-slide="prev">
     <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-    <span class="sr-only">Previous</span>
+    <span class="visually-hidden">Previous</span>
   </a>
-
   <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-bs-slide="next">
     <span class="carousel-control-next-icon" aria-hidden="true"></span>
-    <span class="sr-only">Next</span>
+    <span class="visually-hidden">Next</span>
   </a>
 </div>
 
 <div class="container mt-5" id="catalogue-section">
   <div class="d-flex justify-content-between align-items-center mb-4">
-    <h2 class="catalogue">My Catalogue</h2>
+    <h2 class="catalogue">My Catalogue</h2>        
   </div>
 
-  <div class="row g-4">
-    {% for jersey in jersey %}
-    <div class="col-lg-4 col-md-6 col-sm-12">
-      <div class="card shadow-sm h-100">
-        <img src="{{ jersey.image }}" class="card-img-top img-fluid" alt="{{ jersey.name }}">
-        <div class="card-body">
-          <h5 class="card-title">{{ jersey.name }}</h5>
-          <p class="card-text"><strong>Description:</strong> {{ jersey.description }}</p>
+  <div id="jersey_cards">
+  </div>
+
+   <!-- Modal -->
+   <div class="modal fade" id="crudModal" tabindex="-1" aria-labelledby="crudModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="crudModalLabel">Add New Jersey Entry</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
-        <ul class="list-group list-group-flush">
-          <li class="list-group-item"><strong>Price:</strong> ${{ jersey.price }}</li>
-          <li class="list-group-item"><strong>Stock:</strong> {{ jersey.quantity }} Items</li>
-        </ul>
-        <div class="card-body text-center">
-          <a href="{% url 'main:edit_jersey' jersey.pk %}" class="btn btn-sm btn-warning">Edit</a>
-          <a href="{% url 'main:delete_jersey' jersey.pk %}" class="btn btn-sm btn-danger">Delete</a>
+        <div class="modal-body">
+          <form class="row" id="jerseyEntryForm">
+            <!-- Form inputs -->
+            <div class="mb-3">
+              <label for="image" class="form-label">Jersey Image URL:</label>
+              <input type="text" id="image" name="image" class="form-control" placeholder="Enter jersey image URL" required>
+              <div id="errorImage" class ="error-message text-danger"></div>
+            </div>
+            <div class="mb-3">
+              <label for="name" class="form-label">Jersey Name:</label>
+              <input type="text" id="name" name="name" class="form-control" placeholder="Enter jersey name" required>
+              <div id="errorName" class ="error-message text-danger"></div>
+            </div>
+            <div class="mb-3">
+              <label for="description" class="form-label">Description:</label>
+              <textarea id="description" name="description" class="form-control" rows="3" placeholder="Give the jersey description" required></textarea>
+              <div id="errorDesc" class ="error-message text-danger"></div>
+            </div>
+            <div class="mb-3">
+              <label for="price" class="form-label">Price:</label>
+              <input type="text" id="price" name="price" class="form-control" placeholder="Enter jersey price" required>
+              <div id="errorPrice" class ="error-message text-danger"></div>
+            </div>
+            <div class="mb-3">
+              <label for="quantity" class="form-label">Quantity:</label>
+              <input type="number" id="quantity" name="quantity" class="form-control" placeholder="Enter jersey quantity" required>
+              <div id="errorQuantity" class ="error-message text-danger"></div>
+            </div>
+          </form>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+          <button type="submit" class="btn btn-primary" form="jerseyEntryForm">Save</button>
         </div>
       </div>
     </div>
-    {% endfor %}
   </div>
-
-  {% if not jersey %}
-  <div class="text-center mt-5">
-    <img src="{% static 'image/mudryk.png' %}" alt="No Data" class="img-thumbnail">
-    <p class="text-danger mt-4">"Jersey belum di add kawan" - El Dear God</p>
-  </div>
-  {% endif %}
 
   <div class="text-center mt-4">
-    <a href="{% url 'main:add_jersey' %}" class="btn btn-dark btn_add btn-block">Add Jersey</a>
-    <a href="{% url 'main:logout' %}" class="btn btn-outline-dark btn_logout btn-block">Logout</a>
+    <a href="{% url 'main:add_jersey' %}" class="btn btn-nonajax">
+      Add New Jersey
+    </a>
+    <button class="btn btn-ajax" data-bs-toggle="modal" data-bs-target="#crudModal">Add New Jersey by AJAX</button>
   </div>
 
   <p class="text-center text-muted mt-3">Last Login Session: {{ last_login }}</p>
 </div>
 
-<style>
-  .carousel-item.active {
-    background: url("{% static 'image/puskas.webp' %}") no-repeat center center;
-    background-size: 100%;
-    height: 100vh;
-    position: relative;
-  }
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/2.11.6/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/5.5.1/js/bootstrap.min.js"></script>
 
-  .overlay {
-    background-color: rgba(0, 0, 0, 0.5);
-    padding: 20px;
-    border-radius: 10px;
-  }
+<script>
+  document.addEventListener('DOMContentLoaded', function () {
+    var modal = new bootstrap.Modal(document.getElementById('crudModal'));
 
-  .carousel-caption {
-    position: absolute;
-    bottom: 20%;
-    left: 0;
-    right: 0;
-    color: #fff;
-    padding: 20px;
-    text-align: center;
-}
+    function addJerseyEntries() {
+      let image = document.getElementById("image").value.trim();
+      let name = document.getElementById("name").value.trim();
+      let description = document.getElementById("description").value.trim();
+      let price = document.getElementById("price").value.trim();
+      let quantity = document.getElementById("quantity").value.trim();
+      
+      // Bersihkan pesan error sebelumnya
+      document.getElementById("errorImage").innerHTML = "";
+      document.getElementById("errorName").innerHTML = "";
+      document.getElementById("errorDesc").innerHTML = "";
+      document.getElementById("errorPrice").innerHTML = "";
+      document.getElementById("errorQuantity").innerHTML = "";
 
-.carousel-caption h5 {
-    font-size: 3vw; /* Ukuran font yang responsif */
-    text-transform: uppercase;
-    letter-spacing: 2px;
-    margin-top: 25px;
-    color: #fff;
-}
+      let isValid = true;
 
-.carousel-caption p {
-    width: 75%;
-    margin: auto;
-    font-size: 1.5vw;
-    line-height: 1.9;
-    color: #fff;
-}
+      if (image === "") {
+          document.getElementById("errorImage").innerHTML = "URL gambar harus diisi!";
+          isValid = false;
+      }
 
-@media (max-width: 768px) {
-    .carousel-caption {
-        bottom: 15%; /* Geser teks lebih ke bawah pada layar kecil */
+      // Validasi nama produk
+      if (name === "") {
+          document.getElementById("errorName").innerHTML = "Nama produk harus diisi!";
+          isValid = false;
+      }
+
+      // Validasi deskripsi
+      if (description === "") {
+          document.getElementById("errorDesc").innerHTML = "Deskripsi harus diisi!";
+          isValid = false;
+      }
+
+      // Validasi harga
+      if (price === "" || price <= 0) {
+          document.getElementById("errorPrice").innerHTML = "Harga harus valid dan lebih dari 0!";
+          isValid = false;
+      }
+
+      // Validasi kuantitas
+      if (quantity === "" || quantity <= 0) {
+          document.getElementById("errorQuantity").innerHTML = "Kuantitas harus valid dan lebih dari 0!";
+          isValid = false;
+      }
+
+      // Jika ada error, jangan submit form
+      if (!isValid) {
+          return false;
+      }
+
+      fetch("{% url 'main:add_jersey_ajax' %}", {
+        method: "POST",
+        body: new FormData(document.getElementById('jerseyEntryForm'))
+      })
+      .then(response => {
+        if (response.ok) {
+          alert('Jersey added successfully!');
+
+          modal.hide();
+          document.body.classList.remove('modal-open');
+          document.querySelector('.modal-backdrop').remove();
+
+          refreshJerseyEntries();
+          document.getElementById('jerseyEntryForm').reset();
+
+          location.reload();
+        } else {
+          alert('Failed to add jersey!');
+        }
+      })
+
+      return false;
     }
 
-    .carousel-caption h5 {
-        font-size: 5vw; /* Perbesar ukuran font pada layar kecil */
+    // Fetch jersey entries
+    async function getJerseyEntries() {
+      return fetch("{% url 'main:show_json' %}").then(res => res.json());
     }
 
-    .carousel-caption p {
-        font-size: 3vw; /* Sesuaikan ukuran teks deskripsi */
+    // Refresh jersey entries in the catalogue
+    async function refreshJerseyEntries() {
+      let jerseyCards = document.getElementById("jersey_cards");
+      jerseyCards.innerHTML = "";
+      const jerseyEntries = await getJerseyEntries();
+
+      if (jerseyEntries.length === 0) {
+        jerseyCards.innerHTML = `
+          <div class="no-data-container">
+            <img src="{% static 'image/mudryk.png' %}" alt="No Data" class="centered-image"/>
+            <p class="text-danger mt-4">"Jersey belum di add kawan" - El Dear God</p>
+          </div>`;
+      } else {
+        let htmlString = jerseyEntries.map(item => {
+          const image = DOMPurify.sanitize(item.fields.image);
+          const name = DOMPurify.sanitize(item.fields.name);
+          const description = DOMPurify.sanitize(item.fields.description);
+          const price = DOMPurify.sanitize(item.fields.price);
+          const quantity = DOMPurify.sanitize(item.fields.quantity); 
+
+          return`
+          <div class="col-md-4 col-sm-6 mb-4">
+            <div class="card h-100">
+              <img src="${image}" class="card-img-top" alt="${name}">
+              <div class="card-body">
+                <h5 class="card-title">${name}</h5>
+                <p class="card-text"><strong>Description:</strong> ${description}</p>
+              </div>
+              <ul class="list-group list-group-flush">
+                <li class="list-group-item"><strong>Price:</strong> $${price}</li>
+                <li class="list-group-item"><strong>Stock:</strong> ${quantity} Items</li>
+              </ul>
+              <div class="card-body text-center">
+                <a href="/edit-jersey/${item.pk}" class="btn btn-sm btn-warning">Edit</a>
+                <a href="/delete-jersey/${item.pk}" class="btn btn-sm btn-danger">Delete</a>
+              </div>
+            </div>
+          </div>
+        `;
+        }).join('');
+        jerseyCards.innerHTML = '<div class="row">' + htmlString + '</div>';
+      }
     }
-}
 
-@media (max-width: 576px) {
-    .carousel-caption {
-        bottom: 10%; /* Lebih geser lagi pada layar yang lebih kecil */
-    }
+    document.getElementById('jerseyEntryForm').onsubmit = function(e) {
+      e.preventDefault();
+      addJerseyEntries();
+    };
 
-    .carousel-caption h5 {
-        font-size: 6vw; /* Sesuaikan font lebih besar pada layar sangat kecil */
-    }
+    refreshJerseyEntries();
+  });
+</script>
 
-    .carousel-caption p {
-        font-size: 4vw; /* Ukuran teks deskripsi juga diperbesar */
-    }
-}
-
-
-  body {
-    background-color: #eae5e0;
-  }
-
-  .container {
-    max-width: 1200px;
-  }
-
-  .catalogue {
-    font-size: 2.5rem;
-    font-weight: bold;
-    margin: 0;
-    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
-  }
-
-  .username {
-    color: #007bff;
-  }
-
-  .card {
-    border: none;
-    transition: transform 0.2s;
-  }
-
-  .card:hover {
-    transform: scale(1.05);
-  }
-
-  .card-img-top {
-    height: 200px;
-    object-fit: contain;
-  }
-
-  .card-title {
-    font-size: 1.25rem;
-    font-weight: bold;
-  }
-
-  .btn {
-    padding: 10px 20px;
-    font-size: 1rem;
-    border-radius: 25px;
-    font-family:'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
-  }
-
-  .img-thumbnail {
-    max-width: 300px;
-    opacity: 0.8;
-    border: none;
-    border-radius: 10px;
-  }
-
-  .text-muted {
-    font-size: 0.875rem;
-  }
-
-  .btn-danger {
-    border-color: #8b1a1a;
-    background-color: #8b1a1a;
-    border: none;
-  }
-
-  .btn-danger:hover {
-    border-color: rgb(82, 12, 12);
-    background-color: rgb(82, 12, 12);
-    border: none;
-  }
-
-  .btn-warning {
-    border-color: #4b5320;
-    background-color: #4b5320;
-    color: white;
-    border: none;
-  }
-
-  .btn-warning:hover {
-    border-color: #383e15;
-    background-color: #383e15;
-    color: white;
-    border: none;
-  }
-
-  .btn_add {
-    background-color: black;
-    color: white;
-  }
-
-  .btn_add:hover {
-    background-color: white;
-    color: black;
-  }
-
-  .btn_logout {
-    background-color: #8b1a1a;
-    color: white;
-  }
-
-  .btn_logout:hover {
-    background-color: white;
-    color: black;
-  }
-
-  .sr-only {
-    position: absolute;
-    width: 1px;
-    height: 1px;
-    padding: 0;
-    overflow: hidden;
-    clip: rect(0, 0, 0, 0);
-    white-space: nowrap;
-    -webkit-clip-path: inset(50%);
-    clip-path: inset(50%);
-    border: 0;
-
-    
-  }
-</style>
 {% endblock content %}

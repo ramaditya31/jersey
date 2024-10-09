@@ -1,5 +1,7 @@
 __Rama__ __Aditya__ __Rifki__ __Harmono__ __(2306165502)__
-# TUGAS 2
+
+<details>
+<summary> TUGAS 2 </summary>
 
 1. Jelaskan bagaimana cara kamu mengimplementasikan checklist di atas secara step-by-step (bukan hanya sekadar mengikuti tutorial)
 
@@ -31,7 +33,10 @@ Karena model Django menghubungkan objek Python ke tabel dalam database relasiona
 __Link__ __Deployment:__
 Tautan PWS: http://rama-aditya31-jerseyku.pbp.cs.ui.ac.id // Tautan Vercel: https://jersey-lxa7.vercel.app
 
-# TUGAS 3
+</details>
+
+<details> 
+<summary> TUGAS 3 </summary>
 
 1. Jelaskan mengapa kita memerlukan data delivery dalam pengimplementasian sebuah platform?
 
@@ -87,8 +92,10 @@ d. Mengakses keempat URL di poin 2 menggunakan Postman, membuat screenshot dari 
 e. Melakukan add-commit-push ke GitHub.
 ![Alt text](<Screenshot 2024-09-18 at 02.14.08.png>)
 
+</details>
 
-# TUGAS 4
+<details>
+<summary> TUGAS 4 </summary>
 
 1. Apa perbedaan antara HttpResponseRedirect() dan redirect()
 - **HttpResponseRedirect()** adalah subclass dari HttpResponse yang digunakan untuk mengirimkan respons pengalihan (redirect) ke pengguna. Fungsi ini secara khusus mengarahkan pengguna ke URL tertentu dengan menghasilkan HttpResponse. Sedangkan **redirect()** adalah fungsi pendek yang lebih mudah digunakan dan fleksibel untuk mengatur pengalihan. Fungsi ini memungkinkan pengalihan dilakukan tanpa perlu menentukan URL secara langsung, terutama saat menggunakan nama view atau objek sebagai parameternya.
@@ -163,7 +170,10 @@ return response
 - Melakukan add-commit-push ke GitHub.
 ![Alt text](<Screenshot 2024-09-25 at 03.34.45.png>)
 
-# TUGAS 5
+</details>
+
+<details>
+<summary> TUGAS 5 </summary>
 
 1. Jika terdapat beberapa CSS selector untuk suatu elemen HTML, jelaskan urutan prioritas pengambilan CSS selector tersebut!
 
@@ -775,3 +785,75 @@ body {
           
 
 </script>
+
+</details>
+
+<details>
+<summary> TUGAS 6 </summary>
+
+1. Jelaskan manfaat dari penggunaan JavaScript dalam pengembangan aplikasi web!
+
+Manfaat dari penggunaan JavaScript terdapat beberapa, contohnya adalah sebagai berikut:
+
+- JavaScript dapat memungkinkan dalam penerapan user interface yang dinamis, seperti dropdown, modal, dan animasi, tanpa perlu melakukan reload halaman secara keseluruhan.
+
+- Dengan JavaScript, manipulasi elemen DOM dapat dilakukan langsung di browser, sehingga meningkatkan kecepatan respon aplikasi web dan memberikan pengalaman yang lebih baik bagi pengguna.
+
+- JavaScript memungkinkan validasi data di sisi klien sebelum dikirim ke server, mengurangi beban server dan mempercepat proses pengolahan data.
+
+- JavaScript mendukung pengambilan data secara asinkron melalui AJAX atau fetch API, memungkinkan aplikasi web mengambil atau mengirim data ke server tanpa harus me-refresh halaman, meningkatkan kecepatan dan efisiensi.
+
+- Dengan JavaScript berjalan di browser, aplikasi web dapat diakses di berbagai device dan platform tanpa memerlukan modifikasi besar.
+
+- JavaScript memungkinkan aplikasi untuk memberikan fitur interaksi real-time seperti notifikasi langsung, obrolan, atau pembaruan data secara live.
+
+2. Jelaskan fungsi dari penggunaan await ketika kita menggunakan fetch()! Apa yang akan terjadi jika kita tidak menggunakan await?
+
+Fungsi dari penggunaan `await` saat menggunakan `fetch()` adalah untuk menunggu hasil dari proses pengambilan data secara asinkron sebelum melanjutkan eksekusi kode. Ketika `fetch()` digunakan, ia mengembalikan sebuah promise yang menandakan bahwa operasi pengambilan data belum selesai. Dengan menambahkan `await`, JavaScript akan "pause" eksekusi kode hingga promise selesai, sehingga data yang diperoleh dari `fetch()` dapat digunakan secara langsung dalam kode yang mengikuti. Jika tidak menggunakan `await`, kode akan tetap berjalan tanpa menunggu hasil dari `fetch()`, berarti bisa mengakses atau memproses data sebelum datanya tersedia, menyebabkan error atau hasil yang tidak sesuai karena JavaScript melanjutkan eksekusi sebelum proses pengambilan data selesai.
+
+3. Mengapa kita perlu menggunakan decorator csrf_exempt pada view yang akan digunakan untuk AJAX POST?
+
+`csrf_exempt` digunakan untuk menonaktifkan pemeriksaan token CSRF pada view tertentu dalam aplikasi web Django. Ini perlu digunakan karena penting untuk view yang menerima AJAX POST dari sumber yang tidak bisa menyediakan token CSRF, seperti ketika request AJAX dibuat oleh klien atau sistem yang berbeda dan tidak memiliki akses ke token CSRF yang di-set oleh Django. Walaupun penggunaan `csrf_exempt` memudahkan integrasi dengan sistem luar, ini juga meningkatkan risiko keamanan karena menonaktifkan salah satu lapisan perlindungan terhadap serangan CSRF. Oleh karena itu, penggunaan decorator ini harus dilakukan dengan hati-hati, dan idealnya hanya pada endpoint yang benar-benar membutuhkannya.
+
+
+4. Pada tutorial PBP minggu ini, pembersihan data input pengguna dilakukan di belakang (backend) juga. Mengapa hal tersebut tidak dilakukan di frontend saja?
+
+- Keamanan: Frontend mudah dimanipulasi oleh pengguna melalui developer tools atau skrip eksternal. Tanpa pembersihan di backend, aplikasi rentan terhadap serangan seperti XSS atau SQL Injection, sehingga backend harus memastikan semua data aman sebelum diproses.
+
+- Konsistensi dan Kontrol: Pembersihan di backend memastikan bahwa data selalu melalui jalur validasi yang sama untuk semua pengguna, terlepas dari browser atau perangkat yang digunakan. Ini mencegah inkonsistensi dan memastikan integritas data yang masuk.
+
+- Lapisan Perlindungan: Backend adalah lapisan terakhir dalam memastikan validitas data. Jika pembersihan hanya dilakukan di frontend, ada risiko input berbahaya dapat mencapai server. Validasi di kedua sisi memberikan perlindungan ganda terhadap eksploitasi.
+
+- Logika Utama: Backend bertanggung jawab atas pengelolaan logika utama, seperti penyimpanan data di database. Memastikan data yang diterima aman dan sesuai sangat penting untuk menjaga keandalan aplikasi.
+
+5. Jelaskan bagaimana cara kamu mengimplementasikan checklist di atas secara step-by-step (bukan hanya sekadar mengikuti tutorial)!
+
+1. Membuat Fungsi untuk menambahkan jersey dengan AJAX
+
+- Buat fungsi JavaScript yang mengambil data inputan dari pengguna seperti link gambar jersey, nama jersey, harga jersey, deskripsi jersey, dan stok jersey.
+- Fungsi ini akan mengirimkan data tersebut ke server menggunakan POST request dengan Fetch API.
+- Data akan dikirimkan dalam format FormData melalui request POST, dan setelah sukses, modal ditutup dan data produk di-refresh tanpa reload halaman.
+
+2. Routing
+
+- Import fungsi yang sudah dibuat di views ke dalam urls.py untuk menangani request penambahan produk baru.
+- Tambahkan urlpatterns yang menghubungkan URL dengan fungsi view untuk menambahkan produk dengan AJAX. Pastikan routing ini menangani permintaan POST.
+
+3. Mengubah Cara Menampilkan Data
+
+- Hapus atribut JerseyForm pada fungsi views.py yang sebelumnya digunakan untuk render form, karena sekarang data produk akan di-fetch dari endpoint JSON.
+- Pada fungsi show_json dan show_xml, ubah nilai dari data menjadi Products.objects.filter(user=request.user) agar hanya menampilkan produk dari pengguna saat ini.
+- Ubah struktur HTML di main.html untuk menghapus conditional blocks yang menampilkan produk secara langsung. Gantikan dengan <div> yang memiliki id sebagai placeholder di mana produk akan ditampilkan secara dinamis.
+
+4. Fetching dan Menampilkan Data Produk Asinkron
+
+- Buat dua fungsi dalam blok <script>:
+- getJerseyEntries(): Fungsi yang bertugas untuk melakukan fetch data JSON dari endpoint yang sudah dibuat, lalu melakukan parsing data menjadi objek JavaScript.
+- refreshJerseyEntries(): Fungsi yang digunakan untuk mengambil data yang sudah di-fetch dan menampilkannya di halaman secara asinkron (tanpa reload). Produk akan ditampilkan dalam elemen HTML yang sudah dibuat di langkah sebelumnya.
+
+5. Mencegah XSS dengan Backend dan Frontend Proteksi
+
+- Gunakan strip_tags pada backend (views.py) untuk memastikan bahwa input pengguna tidak mengandung tag HTML atau JavaScript berbahaya.
+- Tambahkan DOMPurify pada frontend untuk membersihkan data yang diambil dari server sebelum ditampilkan di halaman, sehingga lebih aman dari serangan XSS.
+
+</details>
