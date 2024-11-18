@@ -11,4 +11,3 @@ class NewJersey(models.Model):
     image = models.CharField(max_length=2083)
     quantity = models.IntegerField()
     time = models.DateTimeField(auto_now_add=True)
-

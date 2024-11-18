@@ -1,5 +1,5 @@
 {% extends 'base.html' %}
-
+{% load static %}
 {% block meta %}
 <title>Register</title>
 {% endblock meta %}
@@ -69,23 +69,28 @@
 
 <style>
     body {
-    background-color: #eae5e0;
-     }
-     
+    background-image: url("{% static 'image/maradona.jpeg' %}");
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    color: #eae5e0;
+    }
+
     .min-vh-100 {
         min-height: 100vh;
-        font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+        font-family: 'Urbanist', sans-serif;
     }
 
     .card {
         border-radius: 20px;
         box-shadow: 0 8px 15px rgba(0, 0, 0, 0.1);
+        background-color: rgba(255, 255, 255, 0.8); /* Make card slightly transparent */
     }
 
     .title {
         font-weight: bold;
         color: #333;
-        font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+        font-family: 'Urbanist', sans-serif;
         padding: 20px;
     }
 

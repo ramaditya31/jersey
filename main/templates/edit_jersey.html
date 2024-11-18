@@ -10,7 +10,7 @@
 
 <div class="container d-flex align-items-center justify-content-center min-vh-100" style="margin-top: 50px;">
   <div class="col-lg-5 col-md-7 col-sm-10">
-    <div class="card shadow-lg p-2" style="max-width: 500px; margin: auto;">
+    <div class="card shadow-lg p-2" style="max-width: 500px; margin: auto; background-color: rgba(255, 255, 255, 0.357);">
       <div class="card-body">
         <h2 class="text-center title text-dark" style="font-size: 1rem;">
           Edit Jersey
@@ -41,7 +41,7 @@
           </div>
 
           <div class="d-grid w-75">
-            <button type="submit" class="btn large-btn" style="font-size: 0.7rem; padding: 6px 10px;">
+            <button type="submit" class="btn large-btn">
               Edit Jersey
             </button>
           </div>
@@ -53,34 +53,36 @@
 
 <style>
     body {
-        background-color: #eae5e0;
+      background-image: url("{% static 'image/messi.jpeg' %}");
+      background-size: cover;
+      background-position: center;
+      background-repeat: no-repeat;
+      background-color: #eae5e0;
     }
      
     .min-vh-100 {
         min-height: 100vh;
-        font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+        font-family: 'Urbanist', sans-serif;
     }
 
     .card {
         border-radius: 15px;
         box-shadow: 0 8px 15px rgba(0, 0, 0, 0.1);
-        padding: 10px;
-        max-width: 500px;
-        width: 100%;
-        margin: auto;
     }
 
     .title {
         font-weight: bold;
-        color: #333;
-        font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+        font-size: 1rem;
+        color:#eae5e0;
+        font-family: 'Urbanist', sans-serif;
         padding: 5px;
-        font-size: 1rem; 
     }
 
     .form-group {
         margin-bottom: 0.5rem; 
         text-align: center;
+        font-size: 0.9rem;
+        color:#eae5e0
     }
 
     .form-control {
@@ -88,20 +90,17 @@
         margin: 0 auto;
         border-radius: 30px;
         padding: 5px; 
-        font-size: 0.7rem; 
-        text-align: center;
     }
-
     
     .large-btn {
-        border-radius: 30px;
-        padding: 6px 10px; 
-        font-size: 0.7rem; 
-        font-weight: bold;
-        background-color: #8b1a1a;
-        color: white;
-        border: none;
-        width: 100%;
+      width: 100%;
+      padding: 8px; 
+      border-radius: 5px;
+      font-weight: bold;
+      background-color: #8b1a1a;
+      color: white;
+      border: none;
+      width: 100%;
     }
 
     .large-btn:hover {

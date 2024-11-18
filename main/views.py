@@ -12,6 +12,8 @@ from django.views.decorators.http import require_POST
 from .models import NewJersey
 from .forms import JerseyForm
 from django.utils.html import strip_tags
+import json
+from django.http import JsonResponse
 
 # Create your views here.
 @login_required(login_url='/login')
@@ -124,3 +126,23 @@ def add_jersey_ajax(request):
     new_jersey.save()
 
     return HttpResponse(b"CREATED", status=201)
+
+@csrf_exempt
+def create_jersey_flutter(request):
+    if request.method == 'POST':
+
+        data = json.loads(request.body)
+        new_jersey = NewJersey.objects.create(
+            user=request.user,
+            image=data["image"],
+            name=data["name"],
+            description=data["description"],
+            price=int(data["price"]),
+            quantity=int(data["quantity"]),
+        )
+
+        new_jersey.save()
+
+        return JsonResponse({"status": "success"}, status=200)
+    else:
+        return JsonResponse({"status": "error"}, status=401)
